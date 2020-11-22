@@ -11,16 +11,26 @@ request.onload = function(){
   var statusHTML = '';
 
   $.each(data, function(i, status){
-    statusHTML += '<tr>';
-    statusHTML += '<td>' + status.name + '</td>';
-    statusHTML += '<td>' + status.html_url + '</td>';
-    statusHTML += '<td>' + status.language + '</td>';
-    statusHTML += '<td>' + status.description + '</td>';
-    statusHTML += '</tr>'
+    $(".accordion").append('<div class="panel panel-default">'+
+          '<div class="panel-heading" role="tab" id="heading_'+i+'">'+
+            '<h4 class="panel-title">'+
+              '<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse_'+i+'" aria-expanded="true" aria-controls="collapse_'+i+'">'+
+                  status.name+
+              '</a>'+
+            '</h4>'+
+          '</div>'+
+          '<div id="collapse_'+i+'" class="panel-collapse collapse in" role="tabpanel" data-parent="#accordion" aria-labelledby="heading_'+i+'">'+
+            '<div class="panel-body">'+
+              status.description+
+            '</div>'+
+          '</div>'+
+        '</div>')
+
+    //statusHTML += '<li>' + status.html_url + '</li>';
+    //statusHTML += '<li>' + status.language + '</li>';
+    //statusHTML += '<li>' + status.description + '</li>';
+    //statusHTML += '</ul>'
   });
-
-  $('tbody').html(statusHTML);
-
 }
 
 //Send request
