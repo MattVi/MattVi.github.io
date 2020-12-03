@@ -9,27 +9,17 @@ request.onload = function(){
   var data = JSON.parse(this.response);
 
   var statusHTML = '';
-
   $.each(data, function(i, status){
-    $(".accordion").append('<div class="panel panel-default">'+
-          '<div class="panel-heading" role="tab" id="heading_'+i+'">'+
-            '<h4 class="panel-title">'+
-              '<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse_'+i+'" aria-expanded="true" aria-controls="collapse_'+i+'">'+
-                  status.name+
-              '</a>'+
-            '</h4>'+
-          '</div>'+
-          '<div id="collapse_'+i+'" class="panel-collapse collapse in" role="tabpanel" data-parent="#accordion" aria-labelledby="heading_'+i+'">'+
-            '<div class="panel-body">'+
-              status.description+
-            '</div>'+
-          '</div>'+
-        '</div>')
-
-    //statusHTML += '<li>' + status.html_url + '</li>';
-    //statusHTML += '<li>' + status.language + '</li>';
-    //statusHTML += '<li>' + status.description + '</li>';
-    //statusHTML += '</ul>'
+    $("#card-list").append('<div class="card text-white bg-dark mb-3">' +
+                            '<div class="card-body">' +
+                            '<h5 class="card-title">' + status.name + '</h5>' +
+                            '<h6 class="card-subtitle mb-2 text-muted">Description:</h6>' +
+                            '<p class="card-text">' + status.description + '</p>' +
+                            '<a href="'+ status.html_url + '" class="btn btn-primary">Go To Project!</a>'+
+                            '</div>' +
+                            '<div class="card-footer text-muted">' + status.language + '</div>' +
+                            '</div>'
+                            )
   });
 }
 
